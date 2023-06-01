@@ -103,4 +103,10 @@ public final class Books implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "Books [id=" + id + ", name=" + name + ", des=" + des + ", genre=" + genre + ", publisher=" + publisher
+				+ ", publication_date=" + publication_date + ", author=" + author + "]";
+	}
+
 }

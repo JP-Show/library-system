@@ -89,4 +89,9 @@ public final class Author implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", name=" + name + ", born=" + born + ", died=" + died + ", list=" + list + "]";
+	}
+
 }
