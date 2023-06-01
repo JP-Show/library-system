@@ -2,15 +2,15 @@ package model.entities;
 
 import java.util.Objects;
 
-public class Genre {	
+public class Publisher {
 	private Integer id;
 	private String name;
 	
-	public Genre() {
+	public Publisher() {
 		
 	}
 
-	public Genre(Integer id, String name) {
+	public Publisher(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -33,7 +33,7 @@ public class Genre {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -44,11 +44,8 @@ public class Genre {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Genre other = (Genre) obj;
-		return Objects.equals(name, other.name);
+		Publisher other = (Publisher) obj;
+		return Objects.equals(id, other.id);
 	}
-
-	
-	
 	
 }
