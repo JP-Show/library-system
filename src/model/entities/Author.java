@@ -13,11 +13,11 @@ public final class Author implements Serializable {
 	private String name;
 	private LocalDate born;
 	private LocalDate died;
-	
-	private List<Books> list = new ArrayList<>(); 
+
+	private List<Books> list = new ArrayList<>();
 
 	public Author() {
-		
+
 	}
 
 	public Author(Integer id, String name, LocalDate born, LocalDate died, List<Books> list) {
@@ -67,6 +67,7 @@ public final class Author implements Serializable {
 	public void addList(Books book) {
 		list.add(book);
 	}
+
 	public void removeList(Books book) {
 		list.remove(book);
 	}
@@ -87,5 +88,5 @@ public final class Author implements Serializable {
 		Author other = (Author) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }
