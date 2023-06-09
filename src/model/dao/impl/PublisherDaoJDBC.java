@@ -5,7 +5,7 @@ import db.DbException;
 import model.dao.PublisherDao;
 import model.entities.Publisher;
 
-import javax.xml.transform.sax.TransformerHandler;
+
 import java.sql.*;
 import java.util.List;
 
@@ -39,7 +39,21 @@ public class PublisherDaoJDBC implements PublisherDao {
 
     @Override
     public void update(Publisher pub) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "UPDATE publisher SET name=? WHERE id = ?"
+            );
+            st.setString(1, pub.getName());
+            st.setInt(2, pub.getId());
+            st.executeUpdate();
 
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
