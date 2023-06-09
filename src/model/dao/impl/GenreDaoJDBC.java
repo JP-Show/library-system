@@ -48,7 +48,22 @@ public class GenreDaoJDBC implements GenreDao {
 
 	@Override
 	public void update(Genre genre) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try{
+			st = conn.prepareStatement(
+					"UPDATE genre SET name = ? WHERE id = ?"
+			);
+
+			st.setString(1, genre.getName());
+			st.setInt(2, genre.getId());
+			st.executeUpdate();
+
+
+		}catch(SQLException e){
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}
 
 	}
 
