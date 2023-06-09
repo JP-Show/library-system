@@ -10,7 +10,11 @@ import java.sql.*;
 import java.util.List;
 
 public class PublisherDaoJDBC implements PublisherDao {
-    private Connection conn = DB.getConnection();
+    private final Connection conn;
+
+    public PublisherDaoJDBC (Connection conn){
+        this.conn = conn;
+    }
     @Override
     public void insert(Publisher pub) {
         PreparedStatement st = null;
