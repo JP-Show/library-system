@@ -15,7 +15,7 @@ import model.entities.Genre;
 
 public class GenreDaoJDBC implements GenreDao {
 
-	private Connection conn;
+	private final Connection conn;
 
 	public GenreDaoJDBC(Connection conn) {
 		this.conn = conn;
