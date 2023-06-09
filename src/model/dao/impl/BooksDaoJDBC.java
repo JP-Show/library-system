@@ -1,8 +1,10 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
+import db.DbException;
 import model.dao.BooksDao;
 import model.entities.Books;
 
@@ -16,7 +18,7 @@ public class BooksDaoJDBC implements BooksDao {
 
 	@Override
 	public void insert(Books book) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
