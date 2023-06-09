@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -87,8 +88,24 @@ public class GenreDaoJDBC implements GenreDao {
 
 	@Override
 	public List<Genre> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try{
+			st = conn.prepareStatement(
+					"SELECT * FROM genre;"
+			);
+			rs = st.executeQuery();
+			List<Genre> list = new ArrayList<>();
+			while(rs.next()){
+				list.add(new Genre(rs.getInt("id"), rs.getString("name")));
+			}
+			return list;
+		}catch (SQLException e){
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }

@@ -19,6 +19,9 @@ public class Program {
 //        genreDao.insert(new Genre(null, "Drama"));
 //        genreDao.update(new Genre(19, "Fantasy"));
 //        genreDao.deleteByName("Drama");
+        for(Genre pub2 : genreDao.findAll()){
+            System.out.println(pub2.toString());
+        }
     }
 
 }
