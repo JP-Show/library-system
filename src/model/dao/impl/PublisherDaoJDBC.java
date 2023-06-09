@@ -58,11 +58,23 @@ public class PublisherDaoJDBC implements PublisherDao {
 
     @Override
     public void deleteByName(String name) {
-
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "DELETE FROM publisher WHERE name = ?"
+            );
+            st.setString(1, name);
+            st.executeUpdate();
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
     public List<Publisher> findAll() {
+
         return null;
     }
 }

@@ -19,6 +19,8 @@ public class Program {
 		GenreDao genreDao = DaoFactory.createGenreDao();
 		
 		genreDao.insert(new Genre(null, "Drama"));
+
+
 	
 	}
 
