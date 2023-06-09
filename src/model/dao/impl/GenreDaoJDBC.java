@@ -69,7 +69,19 @@ public class GenreDaoJDBC implements GenreDao {
 
 	@Override
 	public void deleteByName(String name) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try{
+			st = conn.prepareStatement(
+					"DELETE FROM genre WHERE name = ?"
+			);
+			st.setString(1, name);
+			st.executeUpdate();
+
+		}catch (SQLException e){
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}
 
 	}
 

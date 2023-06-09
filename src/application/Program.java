@@ -3,8 +3,6 @@ package application;
 
 import model.dao.DaoFactory;
 import model.dao.GenreDao;
-import model.entities.Author;
-import model.entities.Books;
 import model.entities.Genre;
 
 
@@ -19,8 +17,8 @@ public class Program {
         GenreDao genreDao = DaoFactory.createGenreDao();
 
 //        genreDao.insert(new Genre(null, "Drama"));
-        genreDao.update(new Genre(19, "Fantasy"));
-
+//        genreDao.update(new Genre(19, "Fantasy"));
+//        genreDao.deleteByName("Drama");
     }
 
 }
