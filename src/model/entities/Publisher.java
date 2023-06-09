@@ -47,5 +47,12 @@ public class Publisher {
 		Publisher other = (Publisher) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Publisher{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
+	}
 }

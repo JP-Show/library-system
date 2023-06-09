@@ -7,6 +7,7 @@ import model.entities.Publisher;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PublisherDaoJDBC implements PublisherDao {
@@ -61,7 +62,7 @@ public class PublisherDaoJDBC implements PublisherDao {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement(
-                    "DELETE FROM publisher WHERE name = ?"
+                    "DELETE FROM publisher WHERE name = ?;"
             );
             st.setString(1, name);
             st.executeUpdate();
@@ -74,7 +75,24 @@ public class PublisherDaoJDBC implements PublisherDao {
 
     @Override
     public List<Publisher> findAll() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+            st = conn.prepareStatement(
+                    "SELECT * FROM publisher;"
+            );
+            rs = st.executeQuery();
+            List<Publisher> list = new ArrayList<>();
+            while(rs.next()){
+                list.add(new Publisher(rs.getInt("id"), rs.getString("name")));
+            }
+            return list;
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
 
-        return null;
     }
 }
