@@ -36,7 +36,8 @@ public class Program {
 
         List<Books> list = new ArrayList<>();
 
-        authorDao.insert(new Author(null, "Re:Zero", LocalDate.parse("01/04/2022", ftm), LocalDate.parse("01/04/2000", ftm), list));
+//        authorDao.insert(new Author(null, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
+        authorDao.update(new Author(1, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
     }
 
 }
