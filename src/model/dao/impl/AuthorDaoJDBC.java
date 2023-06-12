@@ -3,14 +3,20 @@ package model.dao.impl;
 import db.DB;
 import db.DbException;
 import model.dao.AuthorDao;
+import model.dao.BooksDao;
+import model.dao.DaoFactory;
 import model.entities.Author;
+import model.entities.Books;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 public class AuthorDaoJDBC implements AuthorDao {
 
     private final Connection conn;
+    private final BooksDao booksDao = DaoFactory.createBooksDao();
 
     public AuthorDaoJDBC(Connection conn) {
         this.conn = conn;
@@ -85,7 +91,26 @@ public class AuthorDaoJDBC implements AuthorDao {
 
     @Override
     public Author findById(Integer id) {
-        return null;
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "SELECT * FROM author WHERE id = ?"
+            );
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next())
+                return new Author(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDate("born").toLocalDate(),
+                        rs.getDate("died") != null  ? rs.getDate("died").toLocalDate() : null ,
+                        booksDao.findByAuthor(id));
+            return null;
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override

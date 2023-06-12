@@ -2,6 +2,7 @@ package application;
 
 
 import model.dao.AuthorDao;
+import model.dao.BooksDao;
 import model.dao.DaoFactory;
 import model.dao.GenreDao;
 import model.entities.Author;
@@ -33,11 +34,13 @@ public class Program {
 //            System.out.println(pub2.toString());
 //        }
         AuthorDao authorDao = DaoFactory.createAuthorDao();
-
-        List<Books> list = new ArrayList<>();
+//        List<Books> list = new ArrayList<>();
 
 //        authorDao.insert(new Author(null, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
-        authorDao.update(new Author(1, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
+//        authorDao.update(new Author(1, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
+        //authorDao.deleteById(4);
+       System.out.println(authorDao.findById(1));
+
     }
 
 }
