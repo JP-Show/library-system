@@ -39,7 +39,13 @@ public class Program {
 //        authorDao.insert(new Author(null, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
 //        authorDao.update(new Author(1, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
         //authorDao.deleteById(4);
-       System.out.println(authorDao.findById(1));
+//       System.out.println(authorDao.findById(1));
+        List<Author> list = new ArrayList<>();
+        list = authorDao.findAll();
+
+        for (Author author: list) {
+            System.out.println(author);
+        }
 
     }
 

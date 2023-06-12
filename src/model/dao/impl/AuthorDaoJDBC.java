@@ -10,6 +10,7 @@ import model.entities.Books;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -105,6 +106,7 @@ public class AuthorDaoJDBC implements AuthorDao {
                         rs.getDate("born").toLocalDate(),
                         rs.getDate("died") != null  ? rs.getDate("died").toLocalDate() : null ,
                         booksDao.findByAuthor(id));
+            DB.closeResultSet(rs);
             return null;
         }catch (SQLException e){
             throw new DbException(e.getMessage());
@@ -115,6 +117,26 @@ public class AuthorDaoJDBC implements AuthorDao {
 
     @Override
     public List<Author> findAll() {
-        return null;
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                    "SELECT * FROM author"
+            );
+            ResultSet rs = st.executeQuery();
+            List<Author> list = new ArrayList<>();
+            while (rs.next())
+                list.add(new Author(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDate("born").toLocalDate(),
+                        rs.getDate("died") != null  ? rs.getDate("died").toLocalDate() : null ,
+                        booksDao.findByAuthor(rs.getInt("id"))));
+            return list;
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+        }
+
     }
 }
