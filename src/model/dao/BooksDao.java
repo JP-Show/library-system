@@ -10,9 +10,9 @@ public interface BooksDao {
 	void deleteById(Integer id);
 	void deleteByName(String name);
 	List<Books> findAll();
-	List<Books> findByName();
-	List<Books> findByAuthor();
-	List<Books> findByPublisher();
-	List<Books> findByGenre();
-	List<Books> findById();
+	List<Books> findByName(String name);
+	List<Books> findByAuthor( int id);
+	List<Books> findByPublisher(int id);
+	List<Books> findByGenre(String name);
+	Books findById(int id);
 }
