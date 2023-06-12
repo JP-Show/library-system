@@ -11,69 +11,60 @@ import model.entities.Books;
 public class BooksDaoJDBC implements BooksDao {
 	
 	private Connection conn;
+
 	
 	public BooksDaoJDBC(Connection conn){
 		this.conn = conn;
 	}
 
+
 	@Override
 	public void insert(Books book) {
 
-		
 	}
 
 	@Override
 	public void update(Books book) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteByName(String name) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public List<Books> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Books> findByName() {
-		// TODO Auto-generated method stub
+	public List<Books> findByName(String name) {
 		return null;
 	}
 
 	@Override
-	public List<Books> findByAuthor() {
-		// TODO Auto-generated method stub
+	public List<Books> findByAuthor(int id) {
 		return null;
 	}
 
 	@Override
-	public List<Books> findByPublisher() {
-		// TODO Auto-generated method stub
+	public List<Books> findByPublisher(int id) {
 		return null;
 	}
 
 	@Override
-	public List<Books> findByGenre() {
-		// TODO Auto-generated method stub
+	public List<Books> findByGenre(String name) {
 		return null;
 	}
 
 	@Override
-	public List<Books> findById() {
-		// TODO Auto-generated method stub
+	public Books findById(int id) {
 		return null;
 	}
-
 }
