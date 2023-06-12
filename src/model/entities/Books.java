@@ -11,15 +11,14 @@ public final class Books implements Serializable {
 	private String name;
 	private String des;
 	private String genre;
-	private String publisher;
 	private LocalDate publication_date;
-
 	private Author author;
+	private Publisher publisher;
 
 	public Books() {
 	}
 
-	public Books(Integer id, String name, String des, String genre, String publisher, LocalDate publication_date,
+	public Books(Integer id, String name, String des, String genre, Publisher publisher, LocalDate publication_date,
 			Author author) {
 		this.id = id;
 		this.name = name;
@@ -62,11 +61,11 @@ public final class Books implements Serializable {
 		this.genre = genre;
 	}
 
-	public String getPublisher() {
+	public Publisher getPublisher() {
 		return publisher;
 	}
 
-	public void setPublisher(String publisher) {
+	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
 	}
 

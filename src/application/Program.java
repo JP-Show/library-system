@@ -8,6 +8,7 @@ import model.dao.GenreDao;
 import model.entities.Author;
 import model.entities.Books;
 import model.entities.Genre;
+import model.entities.Publisher;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -34,18 +35,26 @@ public class Program {
 //            System.out.println(pub2.toString());
 //        }
         AuthorDao authorDao = DaoFactory.createAuthorDao();
-//        List<Books> list = new ArrayList<>();
+
 
 //        authorDao.insert(new Author(null, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
 //        authorDao.update(new Author(1, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
         //authorDao.deleteById(4);
 //       System.out.println(authorDao.findById(1));
-        List<Author> list = new ArrayList<>();
-        list = authorDao.findAll();
+        //List<Author> list = new ArrayList<>();
+        //list = authorDao.findAll();
 
-        for (Author author: list) {
-            System.out.println(author);
-        }
+//        for (Author author: list) {
+//            System.out.println(author);
+//        }
+        List<Books> list = new ArrayList<>();
+        Author author = new Author(1, "Tappei", LocalDate.parse("01/04/1982", ftm), null, list);
+        Publisher pub = new Publisher(1, "KADOKAWA");
+        Books book = new Books(null, "re:zero", "um grande livro do escritor Tappei, Livro de volta no tempo", "Fantasia, viagem no tempo, isekai", pub,LocalDate.parse("01/04/2016", ftm),author  );
+
+        BooksDao booksDao = DaoFactory.createBooksDao();
+
+        booksDao.insert(book);
 
     }
 
