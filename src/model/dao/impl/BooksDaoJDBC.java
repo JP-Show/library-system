@@ -47,6 +47,26 @@ public class BooksDaoJDBC implements BooksDao {
 
 	@Override
 	public void update(Books book) {
+		PreparedStatement st = null;
+		try{
+			st = conn.prepareStatement(
+					"UPDATE `library_bd`.`books` " +
+							"SET `name` = ?, `description` =?, `genre` = ?, `id_publisher` =?, `publication_date` = ?, `id_author` = ? WHERE `id` = ?;"
+			);
+			st.setString(1, book.getName());
+			st.setString(2, book.getDes());
+			st.setString(3, book.getGenre());
+			st.setInt(4, book.getPublisher().getId());
+			st.setDate(5, java.sql.Date.valueOf(book.getPublication_date()));
+			st.setInt(6, book.getAuthor().getId());
+			st.setInt(7, book.getId());
+
+			st.executeUpdate();
+		}catch(SQLException e){
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}
 
 	}
 
