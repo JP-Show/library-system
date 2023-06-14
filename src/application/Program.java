@@ -5,6 +5,7 @@ import model.dao.AuthorDao;
 import model.dao.BooksDao;
 import model.dao.DaoFactory;
 import model.dao.GenreDao;
+import model.dao.utils.BooksDaoUtils;
 import model.entities.Author;
 import model.entities.Books;
 import model.entities.Genre;
@@ -54,7 +55,13 @@ public class Program {
 
         BooksDao booksDao = DaoFactory.createBooksDao();
 
-        booksDao.deleteByName("re:zero");
+
+
+//        for(Books boo : booksDao.findByPublisher(1)){
+//            System.out.println(boo);
+//        }
+        System.out.println(BooksDaoUtils.refactorGenreStringToStringForSQL("fantasy"));
+        System.out.println(booksDao.findById(6));
 
     }
 
