@@ -50,11 +50,11 @@ public class Program {
         List<Books> list = new ArrayList<>();
         Author author = new Author(1, "Tappei", LocalDate.parse("01/04/1982", ftm), null, list);
         Publisher pub = new Publisher(1, "KADOKAWA");
-        Books book = new Books(null, "re:zero", "um grande livro do escritor Tappei, Livro de volta no tempo", "Fantasia, viagem no tempo, isekai", pub,LocalDate.parse("01/04/2016", ftm),author  );
+        Books book = new Books(3, "re:zero", "um grande livro do escritor Tappei, Livro de volta no tempo", "Fantasia, viagem no tempo, isekai", pub,LocalDate.parse("01/04/2015", ftm),author  );
 
         BooksDao booksDao = DaoFactory.createBooksDao();
 
-        booksDao.insert(book);
+        booksDao.deleteByName("re:zero");
 
     }
 
