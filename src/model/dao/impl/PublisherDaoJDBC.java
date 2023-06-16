@@ -95,4 +95,26 @@ public class PublisherDaoJDBC implements PublisherDao {
         }
 
     }
+    public Publisher findById(Integer id) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+            st = conn.prepareStatement(
+                    "SELECT * FROM publisher WHERE id = ?;"
+            );
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            Publisher pub = null;
+            if(rs.next()){
+                pub = new Publisher(rs.getInt("id"), rs.getString("name"));
+            }
+            return pub;
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+
+    }
 }

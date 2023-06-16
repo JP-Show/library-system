@@ -9,4 +9,5 @@ public interface PublisherDao {
 	void update(Publisher pub);
 	void deleteByName(String name);
 	List<Publisher> findAll();
+	Publisher findById(Integer id);
 }
