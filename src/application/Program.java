@@ -1,20 +1,10 @@
 package application;
 
 
-import model.dao.AuthorDao;
-import model.dao.BooksDao;
-import model.dao.DaoFactory;
-import model.dao.GenreDao;
-import model.dao.utils.BooksDaoUtils;
-import model.entities.Author;
-import model.entities.Books;
-import model.entities.Genre;
-import model.entities.Publisher;
+import db.DB;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 
 public class Program {
@@ -22,46 +12,27 @@ public class Program {
 
     public static void main(String[] args) {
         DateTimeFormatter ftm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-
-//		Author author = new Author(2, "Andre", LocalDate.now(), LocalDate.now(), null);
-//		Books books = new Books(1, "Elder", "Um livro muito legal e divertido", "", null, null, author);
-
-        GenreDao genreDao = DaoFactory.createGenreDao();
-
-//        genreDao.insert(new Genre(null, "Drama"));
-//        genreDao.update(new Genre(19, "Fantasy"));
-//        genreDao.deleteByName("Drama");
-//        for(Genre pub2 : genreDao.findAll()){
-//            System.out.println(pub2.toString());
-//        }
-        AuthorDao authorDao = DaoFactory.createAuthorDao();
-
-
-//        authorDao.insert(new Author(null, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
-//        authorDao.update(new Author(1, "Tappei Nagatsuki", LocalDate.parse("01/04/2022", ftm),null , list));
-        //authorDao.deleteById(4);
-//       System.out.println(authorDao.findById(1));
-        //List<Author> list = new ArrayList<>();
-        //list = authorDao.findAll();
-
-//        for (Author author: list) {
-//            System.out.println(author);
-//        }
-        List<Books> list = new ArrayList<>();
-        Author author = new Author(1, "Tappei", LocalDate.parse("01/04/1982", ftm), null, list);
-        Publisher pub = new Publisher(1, "KADOKAWA");
-        Books book = new Books(3, "re:zero", "um grande livro do escritor Tappei, Livro de volta no tempo", "Fantasia, viagem no tempo, isekai", pub,LocalDate.parse("01/04/2015", ftm),author  );
-
-        BooksDao booksDao = DaoFactory.createBooksDao();
-
-
-
-//        for(Books boo : booksDao.findByPublisher(1)){
-//            System.out.println(boo);
-//        }
-        System.out.println(BooksDaoUtils.refactorGenreStringToStringForSQL("fantasy"));
-        System.out.println(booksDao.findById(6));
+        Scanner sc = new Scanner(System.in);
+        byte menuSelected = -1;
+        try{
+            while(menuSelected != 0) {
+                System.out.println("Bem-vindo a Biblioteca virtual :)");
+                System.out.println("1 - Livros");
+                System.out.println("2 - Autor");
+                System.out.println("3 - Publicadora");
+                menuSelected = sc.nextByte();
+                switch (menuSelected) {
+                    case 1:
+                        MenuBook.main();
+                        break;
+                    default:
+                        System.out.println("invalido! Não existe essa sessão");
+                        break;
+                }
+            }
+        }finally {
+            DB.closeConnection();
+        }
 
     }
 
