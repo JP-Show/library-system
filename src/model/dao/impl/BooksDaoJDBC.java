@@ -184,7 +184,7 @@ public class BooksDaoJDBC implements BooksDao {
 		PreparedStatement st = null;
 		try{
 			st = conn.prepareStatement(
-					"SELECT * FROM books JOIN publisher AS pub ON pub.id = id_publisher JOIN author ON id_author = author.id WHERE books.id = ?;"
+					"SELECT * FROM books JOIN publisher AS pub ON id_publisher = pub.id JOIN author ON id_author = author.id WHERE author.id = ?;"
 			);
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
