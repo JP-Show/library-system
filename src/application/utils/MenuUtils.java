@@ -16,8 +16,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuUtils {
-    public static Books menuReturnBook(DateTimeFormatter ftm, BooksDao BD, PublisherDao PD, AuthorDao AD, Scanner sc) throws DbException {
+    public static Books menuReturnBook(DateTimeFormatter ftm, PublisherDao PD, AuthorDao AD, Scanner sc) throws DbException {
         try {
+
             System.out.println("name");
             sc.nextLine();
             String name = sc.nextLine();
@@ -55,6 +56,25 @@ public class MenuUtils {
         }
     }
 
+    public static Author menuReturnAuthor(DateTimeFormatter ftm, PublisherDao PD, AuthorDao AD, Scanner sc){
+        try{
+            System.out.println("name");
+            sc.nextLine();
+            String name = sc.nextLine();
+            System.out.println("born's date dd/MM/yyyy");
+            LocalDate born = LocalDate.parse(sc.next(),ftm);
+            System.out.println("he or she is alive?(y/n)");
+            LocalDate died = null;
+            char alive = sc.next().charAt(0);
+            if (alive == 'n') {
+                System.out.println("died date dd/MM/yyyy (if alive, please don't type)");
+                died = LocalDate.parse(sc.next(),ftm);
+            }
+            return new Author(null, name, born, died, null);
+        }catch (RuntimeException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
     public static Author FindAuthor(Scanner sc, AuthorDao AD){
         System.out.println("Type author's id, (if you not remember id, type '-1'): ");
         Author author = null;
