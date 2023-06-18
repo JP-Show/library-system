@@ -1,29 +1,13 @@
 package application;
 
+import application.utils.DIF;
 import application.utils.MenuUtils;
-import db.DB;
 import db.DbException;
-import model.dao.AuthorDao;
-import model.dao.BooksDao;
-import model.dao.DaoFactory;
-import model.dao.PublisherDao;
-import model.dao.utils.BooksDaoUtils;
 import model.entities.Author;
 import model.entities.Books;
-import model.entities.Publisher;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Scanner;
 
 public class MenuBook {
-        private static final DateTimeFormatter ftm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        private static final BooksDao BD = DaoFactory.createBooksDao();
-        private static final PublisherDao PD = DaoFactory.createPublisherDao();
-        private static final AuthorDao AD = DaoFactory.createAuthorDao();
-        private static final Scanner sc = new Scanner(System.in);
+
     public static void main (){
         System.out.println("Menu dos livros");
         System.out.println("1 - add book");
@@ -31,7 +15,7 @@ public class MenuBook {
         System.out.println("3 - list all books");
         System.out.println("4 - list by genre");
         System.out.println("5 - list by author");
-        byte menuSelected = sc.nextByte();
+        byte menuSelected = DIF.sc.nextByte();
         switch (menuSelected){
             case 1:
                 addBook();
@@ -52,15 +36,19 @@ public class MenuBook {
         }
     }
     public static void addBook() {
-        BD.insert(MenuUtils.menuReturnBook(ftm, BD, PD, AD, sc ));
+        DIF.BD.insert(MenuUtils.menuReturnBook(DIF.ftm, DIF.PD, DIF.AD, DIF.sc ));
 
     }
     public static void editBook(){
-        BD.update(MenuUtils.menuReturnBook(ftm, BD, PD, AD, sc ));
+        System.out.println("What's book's id?");
+        int id = DIF.sc.nextInt();
+        Books book = MenuUtils.menuReturnBook(DIF.ftm, DIF.PD, DIF.AD, DIF.sc);
+        book.setId(id);
+        DIF.BD.update(book);
     }
     public static void listAllBooks() throws DbException{
         try{
-         for(Books book : BD.findAll()){
+         for(Books book : DIF.BD.findAll()){
              System.out.println(book);
         }
         }catch (RuntimeException e){
@@ -69,9 +57,9 @@ public class MenuBook {
     }
     public static void listByGenreBooks() throws DbException{
         System.out.println("type genre(EXAMPLE: Fantasy,Horror,Comedy):");
-        String genres = sc.next();
+        String genres = DIF.sc.next();
         try{
-            for(Books book : BD.findByGenre(genres)){
+            for(Books book : DIF.BD.findByGenre(genres)){
                 System.out.println(book);
             }
         }catch (RuntimeException e){
@@ -79,11 +67,11 @@ public class MenuBook {
         }
     }
     public static void listByAuthorBooks() throws DbException{
-        Author author = MenuUtils.FindAuthor(sc, AD);
+        Author author = MenuUtils.FindAuthor(DIF.sc, DIF.AD);
         System.out.println(author);
         System.out.println(author.getId());
         try{
-            for(Books book : BD.findByAuthor(author.getId())){
+            for(Books book : DIF.BD.findByAuthor(author.getId())){
                 System.out.println(book);
             }
         }catch (RuntimeException e){
