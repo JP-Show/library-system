@@ -6,12 +6,9 @@ import model.dao.AuthorDao;
 import model.dao.BooksDao;
 import model.dao.DaoFactory;
 import model.entities.Author;
-import model.entities.Books;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AuthorDaoJDBC implements AuthorDao {
