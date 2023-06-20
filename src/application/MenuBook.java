@@ -8,7 +8,7 @@ import model.entities.Books;
 
 public class MenuBook {
 
-    public static void main (){
+    public static void menu (){
         System.out.println("Menu dos livros");
         System.out.println("1 - add book");
         System.out.println("2 - edit book");

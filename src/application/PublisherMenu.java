@@ -5,7 +5,7 @@ import db.DbException;
 import model.entities.Publisher;
 
 public class PublisherMenu {
-    public static void main (){
+    public static void menu (){
         System.out.println("Mene of Publishers");
         System.out.println("1 - add Publishers");
         System.out.println("2 - edit Publishers");

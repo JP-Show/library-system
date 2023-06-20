@@ -3,7 +3,6 @@ package application;
 
 import db.DB;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -21,9 +20,9 @@ public class Program {
                 System.out.println("3 - Publicadora");
                 menuSelected = sc.nextByte();
                 switch (menuSelected) {
-                    case 1 -> MenuBook.main();
-                    case 2 -> AuthorMenu.main();
-                    case 3 -> PublisherMenu.main();
+                    case 1 -> MenuBook.menu();
+                    case 2 -> AuthorMenu.menu();
+                    case 3 -> PublisherMenu.menu();
                     default -> System.out.println("invalido! Não existe essa sessão");
                 }
             }

@@ -7,26 +7,18 @@ import model.entities.Author;
 
 public class AuthorMenu {
 
-    public static void main (){
+    public static void menu (){
         System.out.println("Menu of Author");
         System.out.println("1 - add Author");
         System.out.println("2 - edit Author");
         System.out.println("3 - list all Author");
         System.out.println("4 - find author by id");
         byte menuSelected = DIF.sc.nextByte();
-        switch (menuSelected){
-            case 1:
-                addAuthor();
-                break;
-            case 2:
-                updateAuthor();
-                break;
-            case 3:
-                listAllAuthor();
-                break;
-            case 4:
-                listById();
-                break;
+        switch (menuSelected) {
+            case 1 -> addAuthor();
+            case 2 -> updateAuthor();
+            case 3 -> listAllAuthor();
+            case 4 -> listById();
         }
     }
     public static void addAuthor() throws DbException{
