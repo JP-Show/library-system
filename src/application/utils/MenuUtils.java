@@ -1,10 +1,7 @@
 package application.utils;
 
-import db.DB;
 import db.DbException;
 import model.dao.AuthorDao;
-import model.dao.BooksDao;
-import model.dao.DaoFactory;
 import model.dao.PublisherDao;
 import model.entities.Author;
 import model.entities.Books;
@@ -12,7 +9,6 @@ import model.entities.Publisher;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 
 public class MenuUtils {
@@ -56,7 +52,7 @@ public class MenuUtils {
         }
     }
 
-    public static Author menuReturnAuthor(DateTimeFormatter ftm, PublisherDao PD, AuthorDao AD, Scanner sc){
+    public static Author menuReturnAuthor(DateTimeFormatter ftm, Scanner sc){
         try{
             System.out.println("name");
             sc.nextLine();
@@ -75,6 +71,7 @@ public class MenuUtils {
             throw new RuntimeException(e.getMessage());
         }
     }
+
     public static Author FindAuthor(Scanner sc, AuthorDao AD){
         System.out.println("Type author's id, (if you not remember id, type '-1'): ");
         Author author = null;

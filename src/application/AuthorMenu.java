@@ -30,12 +30,12 @@ public class AuthorMenu {
         }
     }
     public static void addAuthor() throws DbException{
-        DIF.AD.insert(MenuUtils.menuReturnAuthor(DIF.ftm, DIF.PD, DIF.AD,DIF.sc));
+        DIF.AD.insert(MenuUtils.menuReturnAuthor(DIF.ftm, DIF.sc));
     }
     public static void updateAuthor()throws DbException {
         System.out.println("What's his or her id?");
         int id = DIF.sc.nextInt();
-        Author author = MenuUtils.menuReturnAuthor(DIF.ftm, DIF.PD, DIF.AD,DIF.sc);
+        Author author = MenuUtils.menuReturnAuthor(DIF.ftm, DIF.sc);
         author.setId(id);
         DIF.AD.update(author);
     }

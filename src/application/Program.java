@@ -11,7 +11,6 @@ public class Program {
 
 
     public static void main(String[] args) {
-        DateTimeFormatter ftm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Scanner sc = new Scanner(System.in);
         byte menuSelected = -1;
         try{
@@ -22,12 +21,10 @@ public class Program {
                 System.out.println("3 - Publicadora");
                 menuSelected = sc.nextByte();
                 switch (menuSelected) {
-                    case 1:
-                        MenuBook.main();
-                        break;
-                    default:
-                        System.out.println("invalido! Não existe essa sessão");
-                        break;
+                    case 1 -> MenuBook.main();
+                    case 2 -> AuthorMenu.main();
+                    case 3 -> PublisherMenu.main();
+                    default -> System.out.println("invalido! Não existe essa sessão");
                 }
             }
         }finally {
