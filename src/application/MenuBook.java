@@ -16,23 +16,12 @@ public class MenuBook {
         System.out.println("4 - list by genre");
         System.out.println("5 - list by author");
         byte menuSelected = DIF.sc.nextByte();
-        switch (menuSelected){
-            case 1:
-                addBook();
-                break;
-            case 2:
-                editBook();
-                break;
-            case 3:
-                listAllBooks();
-                break;
-            case 4:
-                listByGenreBooks();
-                break;
-            case 5:
-                listByAuthorBooks();
-                break;
-
+        switch (menuSelected) {
+            case 1 -> addBook();
+            case 2 -> editBook();
+            case 3 -> listAllBooks();
+            case 4 -> listByGenreBooks();
+            case 5 -> listByAuthorBooks();
         }
     }
     public static void addBook() {
